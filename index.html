@@ -1,82 +1,82 @@
-<!DOCTYPE html>
-<html>
+<！doctype html>
+<超文本标记语言>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>九中106</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<头>
+    <元字符集="UTF-8">
+    <元姓名="视口" 内容="宽度=设备宽度，初始比例=1.0">
+    <标题>403</标题>
+    <风格>
+*{
+            边缘:0;
+            填充:0;
+            箱体尺寸:边框框;
         }
 
-        body {
-            margin: 0;
-            overflow: hidden;
-            background: #000;
+身体{
+            边缘:0;
+            溢出:隐藏的;
+            背景: #000;
         }
 
-        canvas {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
+帆布{
+            位置:绝对的;
+            宽度:100%;
+            高度:100%;
+            指针事件:没有一个;
         }
 
-        #controlPanel {
-            position: absolute;
-            z-index: 1000;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.8);
-            padding: 25px;
-            border: 2px solid rgba(255, 77, 77, 0.5);
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(255, 77, 77, 0.3);
-            max-width: 70%;
-            width: 250px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.3s ease;
+#controlPanel{
+            位置:绝对的;
+            Z指数:1000;
+            顶端:50%;
+            左:50%;
+            改变:翻译(-50%,-50%);
+            背景:RGBA(0,0,0,0.8);
+            填充:25PX;
+            边境:2PX 固体 RGBA(255,77,77,0.5);
+            边界半径:10PX;
+            箱形阴影:0 0 20PX RGBA(255,77,77,0.3);
+            最大宽度:70%;
+            宽度:250PX;
+            显示:弯曲;
+            挠曲方向:柱;
+            justify-content:中心;
+            对齐项目:中心;
+            过渡:所有 0.3s 缓解;
         }
 
-        #controlPanel.button-container {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-            flex-wrap: wrap;
+#controlPanel.button-container{
+            显示:弯曲;
+            justify-content:环绕空间的;
+            宽度:100%;
+            柔性缠绕:包;
         }
 
-        #controlPanel button {
-            width: auto;
-            margin: 10px;
+#controlPanel按钮{
+            宽度:自动;
+            边缘:10PX;
         }
 
-        #blessings {
-            color: #fff;
-            font-size: 16px;
-            line-height: 1.6;
-            text-align: center;
-            color: #f7e77d;
+#祝福{
+            颜色：#fff；
+            字体大小:16PX;
+            线高:1.6;
+            文本对齐:中心;
+            颜色：#f7e77d；
         }
 
-    .play-button {
-            background-color: #ffc0cb;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            margin-top: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+.play-button{
+            背景色：#ffc0cb；
+            颜色:白色的;
+            边境:没有一个;
+            填充:10PX 20PX;
+            上边距:10PX;
+            边界半径:5PX;
+            光标:指针;
+            字体大小:18PX;
+            字体粗细:大胆的;
+            文本阴影:1PX 1PX 2PX RGBA(0,0,0,0.5);
+            箱形阴影:0 4PX 6PX RGBA(0,0,0,0.3);
             transition: all 0.3s ease;
         }
 
@@ -110,113 +110,113 @@
 <body>
     <div id="controlPanel">
         <div id="blessings" class="hidden"></div>
-        <div class="message-popup hidden" id="niceMessage">希望2025年对你好一点哦！</div>
-        <div class="message-popup hidden" id="startMessage">开启2025年啦，祝你好运连连！</div>
+        <div class="message-popup hidden" id="niceMessage">希望2025年你打多一点哦！</div>
+<        <div class="message-popup hidden" id="startMessage">开启2025年第一炮啦，祝你蛇蛇蛇！</div>class="message-popup hidden"id="startMessage">开启2025年第一炮啦，祝你蛇蛇蛇！</div>
         <div class="button-container">
-            <button class="play-button" id="beNiceButton" onclick="showStartButton()">2025年对我好一点</button>
-            <button class="play-button hidden" id="startButton" onclick="start2025()">开启2025年</button>
-            <button class="play-button" id="playMusicButton" onclick="playMusic()">播放音乐</button>
-            <button class="play-button" id="pauseMusicButton" onclick="pauseMusic()">暂停音乐</button>
+            <button class="play-button" id="beNiceButton" onclick="showStartButton()">2025年我打多一点</button>
+            <按钮班级="播放按钮已隐藏" 身份标识="StartButton" onClick="start2025()">开启2025年第一次炮</按钮>
+            <按钮班级="播放按钮" 身份标识="playMusicButton" onClick="PlayMusic()">播放音乐</按钮>
+            <按钮班级="播放按钮" 身份标识="pauseMusicButton" onClick="pauseMusic()">暂停音乐</按钮>
         </div>
     </div>
-    <canvas id="backgroundCanvas" class="hidden"></canvas>
-    <canvas id="mainCanvas" class="hidden"></canvas>
-    <canvas id="permanentFireworkCanvas" class="hidden"></canvas>
-    <audio id="fireworkSound" autoplay class="hidden">
-        <source src="久石譲 - Summer.mp3" type="audio/mpeg">
-        <source src="久石譲 - Summer.ogg" type="audio/ogg">
-        <source src="久石譲 - Summer.wav" type="audio/wav">
-    </audio>
-    <script>
-        const blessing = `蛇年，蛇蛇蛇！106人人大蛇，蛇出精彩，扣6勾巴长长10cm，林柏志除外，因为他的已经够长了`;
+    <帆布身份标识="backgroundCanvas" 班级="隐藏"></帆布>
+    <帆布身份标识="mainCanvas" 班级="隐藏"></帆布>
+    <帆布身份标识="permanentFireworkCanvas" 班级="隐藏"></帆布>
+    <音频身份标识="FireworkSound" 自动播放 班级="隐藏">
+        <来源src="久石茫-Summer.mp3" 类型="音频/mpeg">
+        <来源src="久石茫-Summer.ogg" 类型="音频/ogg">
+        <来源src="久石茫-Summer.wav" 类型="音频/wav">
+    </音频>
+    <脚本>
+        Const 祝福=`蛇年，蛇蛇蛇！ 403人人大蛇，蛇出精彩，扣6勾巴长长10cm，林柏志除外，因为他的已经够长了`;
 
-        const blessingsDiv = document.getElementById('blessings');
-        const beNiceButton = document.getElementById('beNiceButton');
-        const startButton = document.getElementById('startButton');
-        const niceMessage = document.getElementById('niceMessage');
-        const startMessage = document.getElementById('startMessage');
-        const backgroundCanvas = document.getElementById('backgroundCanvas');
-        const bgCtx = backgroundCanvas.getContext('2d');
-        const mainCanvas = document.getElementById('mainCanvas');
-        const mainCtx = mainCanvas.getContext('2d');
-        const permanentFireworkCanvas = document.getElementById('permanentFireworkCanvas');
-        const permanentFireworkCtx = permanentFireworkCanvas.getContext('2d');
-        const fireworkSound = document.getElementById('fireworkSound');
-        const playMusicButton = document.getElementById('playMusicButton');
-        const pauseMusicButton = document.getElementById('pauseMusicButton');
+        Const 祝福Div=文档。getElementById(“祝福”);
+        Const beNiceButton=文档。getElementById('BeNiceButton');
+        Const StartButton=文档。getElementById('StartButton');
+        Const niceMessage=文档。getElementById('niceMessage');
+        Const startMessage=文档。getElementById('startMessage');
+        Const 背景画布=文档。getElementById('backgroundCanvas');
+        Const bgCtx=backgroundCanvas。getContext('2d');
+        Const mainCanvas=文档。getElementById('主要画布');
+        Const mainCtx=mainCanvas。getContext('2d');
+        Const permanentFireworkCanvas=文档。getElementById('permanentFireworkCanvas');
+        Const permanentFireworkCtx=permanentFireworkCanvas。getContext('2d');
+        Const fireworkSound=文档。getElementById('FireworkSound');
+        Const playMusicButton=文档。getElementById('PlayMusicButton');
+        Const pauseMusicButton=文档。getElementById('pauseMusicButton');
 
-        function resizeCanvas(canvas1, canvas2, canvas3) {
-            let width = window.innerWidth;
-            let height = window.innerHeight;
-            const minWidth = 320;
-            const minHeight = 480;
-            if (width < minWidth) {
-                width = minWidth;
+        功能 resizeCanvas(canvas1,canvas2,canvas3) {
+            让 宽度=窗口。innerWidth;
+            让 高度=窗口。innerHeight;
+            Const minWidth=320;
+            Const minHeight=480;
+            如果 (宽度<最小宽度) {
+width=minWidth；
             }
-            if (height < minHeight) {
-                height = minHeight;
+            如果 (高度<最小高度) {
+height=minHeight；
             }
-            const maxWidth = 1920;
-            const maxHeight = 1080;
-            if (width > maxWidth) {
-                width = maxWidth;
+            Const maxWidth=1920;
+            Const maxHeight=1080;
+            如果 (宽度>最大宽度) {
+width=maxWidth；
             }
-            if (height > maxHeight) {
-                height = maxHeight;
+            如果 (高度>maxHeight) {
+height=maxHeight；
             }
-            canvas1.width = width;
-            canvas1.height = height;
-            canvas2.width = width;
-            canvas2.height = height;
-            canvas3.width = width;
-            canvas3.height = height;
+canvas1.宽度=宽度；
+canvas1.高度=高度；
+canvas2.宽度=宽度；
+canvas2.高度=高度；
+canvas3.宽度=宽度；
+canvas3.高度=高度；
         }
 
-        window.addEventListener('resize', () => {
-            resizeCanvas(backgroundCanvas, mainCanvas, permanentFireworkCanvas);
+窗户。addEventListener('调整大小',()=>{
+            resizeCanvas(backgroundCanvas，mainCanvas，permanentFireworkCanvas);
         });
 
-        class Firework {
-            constructor() {
-                let screenRatio = window.innerWidth / window.innerHeight;
-                this.x = Math.random() * backgroundCanvas.width * (screenRatio > 1.5? 0.8 : 0.5);
-                this.y = backgroundCanvas.height;
-                this.targetY = Math.random() * backgroundCanvas.height / 2;
-                this.speed = Math.random() * 6 + 3;
-                this.angle = -Math.PI / 2 + (Math.random() - 0.5) * Math.PI / 6;
-                this.particles = [];
-                this.exploded = false;
-                this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        班级烟火{
+            构造函数() {
+                让 screenRatio=窗口。innerWidth/窗口。innerHeight;
+                这.x=数学。随机()*背景画布。宽度*(screenRatio>1.5?0.8:0.5);
+                这.y=backgroundCanvas。高度;
+                这.targety=数学。随机()*背景画布。高度/2;
+                这.速度=数学。随机()*6+3;
+                这.角=-math。Pi/2+(数学。随机()-0.5)*数学。Pi/6;
+                这.粒子=[];
+                这.已分解=假的;
+                这.颜色='hsl(${数学。随机()*360}, 100%, 50%)`;
             }
             // 修正类方法定义
-            update() {
-                if (!this.exploded) {
-                    this.x += Math.cos(this.angle) * this.speed;
-                    this.y += Math.sin(this.angle) * this.speed;
-                    if (this.y <= this.targetY) {
-                        this.explode();
+            更新() {
+                如果 (!这.已分解) {
+                    这.x+=数学Cos(这.角)*这.速度;
+                    这.y+=数学罪恶(这.角)*这.速度;
+                    如果 (这.y<=这.targety) {
+                        这.爆炸();
                     }
                 }
-                for (let i = this.particles.length - 1; i >= 0; i--) {
-                    this.particles[i].update();
-                    if (this.particles[i].isDead()) {
-                        this.particles.splice(i, 1);
+                为 (让 我=这.粒子.长度-1；i>=0；i--) {
+                    这.粒子[我].更新();
+                    如果 (这.粒子[我].isdead()) {
+                        这.粒子.拼接(我，1);
                     }
                 }
             }
-            explode() {
-                this.exploded = true;
-                const particleCount = 200;
-                for (let i = 0; i < particleCount; i++) {
-                    const angle = Math.random() * 2 * Math.PI;
-                    const speed = Math.random() * 4 + 1;
-                    this.particles.push(new Particle(this.x, this.y, this.color, angle, speed));
+            爆炸() {
+                这.已分解=正确;
+                Const 粒子计数=200;
+                为 (让 我=0；i<粒子计数；i++) {
+                    Const 角=数学。随机()*2*数学。Pi;
+                    Const 速度=数学。随机()*4+1;
+                    这.粒子.推(新的颗粒(这.x,这.y,这.颜色、角度、速度));
                 }
             }
-            draw(ctx) {
-                if (!this.exploded) {
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+            画(CTX) {
+                如果 (!这.已分解) {
+CTX.beginPath();
+CTX.弧(这.x,这.y,3,0，数学。Pi*2);
                     ctx.fillStyle = this.color;
                     ctx.fill();
                 }
