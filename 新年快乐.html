@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>烟花与雪花及祝福语</title>
+    <style>
+        /* 重置默认样式，使用 border-box 盒模型 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 页面主体样式，居中并隐藏溢出内容 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        /* 画布样式，覆盖整个页面 */
+        canvas {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        /* 控制面板样式，使用 flex 布局，添加动画和阴影效果 */
+        #controlPanel {
+            position: relative;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border: 2px solid rgba(255, 77, 77, 0.5);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 77, 77, 0.3);
+            max-width: 80%;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        /* 按钮容器样式，使用 flex 布局，添加间距 */
+        #controlPanel.button-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        /* 按钮通用样式，使用渐变背景，添加动画和阴影效果 */
+        #controlPanel button {
+            width: auto;
+            margin: 10px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            background: linear-gradient(to bottom, #ffc0cb, #e65c00);
+            color: white;
+            border: none;
+        }
+
+        /* 按钮悬停效果，增强阴影和位移 */
+        #controlPanel button:hover {
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+            transform: translateY(-3px);
+        }
+
+        /* 祝福语样式，设置字体大小、行高和动画效果 */
+        #blessings {
+            color: #fff;
+            font-size: 18px;
+            line-height: 1.8;
+            text-align: center;
+            color: #f7e77d;
+            margin-bottom: 20px;
+            animation: fadeInOut 10s ease-in-out forwards;
+        }
+
+        /* 隐藏元素的类 */
+     .hidden {
+            display: none;
+        }
+
+        /* 消息弹窗样式，设置位置、背景、边框和动画效果 */
+     .message-popup {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border: 2px solid rgba(255, 77, 77, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 77, 77, 0.3);
+            z-index: 1001;
+            text-align: center;
+            animation: fadeInOutMessage 3s ease-in-out;
+        }
+
+        /* 新增的悬浮窗样式 */
+     .floating-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 77, 77, 0.3);
+            z-index: 1002;
+            animation: fadeInOutFloating 8s ease-in-out forwards;
+        }
+
+        /* 祝福语的淡入淡出动画 */
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            30% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            70% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        /* 消息弹窗的淡入淡出动画 */
+        @keyframes fadeInOutMessage {
+            0% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* 悬浮窗的淡入淡出动画 */
+        @keyframes fadeInOutFloating {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            10% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            90% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 控制面板，包含各种按钮和消息 -->
+    <div id="controlPanel">
+        <div id="blessings" class="hidden"></div>
+        <div class="message-popup hidden" id="niceMessage">希望 2025 年对你好一点哦！</div>
+        <div class="message-popup hidden" id="startMessage">开启 2025 年啦，祝你好运连连！</div>
+        <div class="button-container">
+            <button class="play-button" id="beNiceButton" aria-label="点击开启 2025 年的美好祝福" onclick="showStartButton()">2025 年对我好一点</button>
+            <button class="play-button hidden" id="startButton" aria-label="开始 2025 年" onclick="start2025()">开启 2025 年</button>
+            <button class="play-button" id="playMusicButton" aria-label="播放音乐" onclick="playMusic()">播放音乐</button>
+            <button class="play-button" id="pauseMusicButton" aria-label="暂停音乐" onclick="pauseMusic()">暂停音乐</button>
+        </div>
+    </div>
+    <!-- 用于绘制背景的画布 -->
+    <canvas id="backgroundCanvas" class="hidden"></canvas>
+    <!-- 用于绘制雪花的画布 -->
+    <canvas id="mainCanvas" class="hidden"></canvas>
+    <!-- 用于绘制永久烟花的画布 -->
+    <canvas id="permanentFireworkCanvas" class="hidden"></canvas>
+    <!-- 音频元素，包含多种音频格式，自动播放，初始隐藏 -->
+    <audio id="fireworkSound" autoplay class="hidden">
+        <source src="久石譲 - Summer.mp3" type="audio/mpeg">
+        <source src="久石譲 - Summer.ogg" type="audio/ogg">
+        <source src="久石譲 - Summer.wav" type="audio/wav">
+    </audio>
+    <!-- 新增的悬浮窗元素 -->
+    <div class="floating-message hidden" id="floatingMessage">2025 年新年快乐</div>
+<script>
+    // 祝福语内容
+    const blessing = `新的一年来喽！愿你越蛇越多，一天蛇24发，蛇到自然入睡`;
+    // 获取 DOM 元素
+    const blessingsDiv = document.getElementById('blessings');
+    const beNiceButton = document.getElementById('beNiceButton');
+    const startButton = document.getElementById('startButton');
+    const niceMessage = document.getElementById('niceMessage');
+    const startMessage = document.getElementById('startMessage');
+    const backgroundCanvas = document.getElementById('backgroundCanvas');
+    const bgCtx = backgroundCanvas.getContext('2d');
+    const mainCanvas = document.getElementById('mainCanvas');
+    const mainCtx = mainCanvas.getContext('2d');
+    const permanentFireworkCanvas = document.getElementById('permanentFireworkCanvas');
+    const permanentFireworkCtx = permanentFireworkCanvas.getContext('2d');
+    const fireworkSound = document.getElementById('fireworkSound');
+    const playMusicButton = document.getElementById('playMusicButton');
+    const pauseMusicButton = document.getElementById('pauseMusicButton');
+    const floatingMessage = document.getElementById('floatingMessage');
+    // 存储烟花对象的数组
+    let fireworks = [];
+    // 存储雪花对象的数组
+    let snowflakes = [];
+    // 上一次创建烟花的时间
+    let lastFireworkTime = 0;
+    // 上一次创建雪花的时间
+    let lastSnowflakeTime = 0;
+    // 烟花创建间隔，根据窗口宽度调整
+    let fireworkInterval = 500;
+    if (window.innerWidth < 600) {
+        fireworkInterval = 1000;
+    }
+    // 雪花创建间隔
+    const snowflakeInterval = 50;
+
+    // 根据窗口大小调整画布尺寸
+    function resizeCanvas(canvas1, canvas2, canvas3) {
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        const minWidth = 320;
+        const minHeight = 480;
+        if (width < minWidth) {
+            width = minWidth;
+        }
+        if (height < minHeight) {
+            height = minHeight;
+        }
+        const maxWidth = 1920;
+        const maxHeight = 1080;
+        if (width > maxWidth) {
+            width = maxWidth;
+        }
+        if (height > maxHeight) {
+            height = maxHeight;
+        }
+        canvas1.width = width;
+        canvas1.height = height;
+        canvas2.width = width;
+        canvas2.height = height;
+        canvas3.width = width;
+        canvas3.height = height;
+    }
+
+    // 监听窗口大小变化，调整画布尺寸
+    window.addEventListener('resize', () => {
+        resizeCanvas(backgroundCanvas, mainCanvas, permanentFireworkCanvas);
+    });
+
+    // 烟花类
+    class Firework {
+        constructor() {
+            // 根据屏幕宽高比设置初始位置
+            let screenRatio = window.innerWidth / window.innerHeight;
+            this.x = Math.random() * backgroundCanvas.width * (screenRatio > 1.5? 0.8 : 0.5);
+            this.y = backgroundCanvas.height;
+            this.targetY = Math.random() * backgroundCanvas.height / 2;
+            this.speed = Math.random() * 6 + 3;
+            this.angle = -Math.PI / 2 + (Math.random() - 0.5) * Math.PI / 6;
+            this.particles = [];
+            this.exploded = false;
+            this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        }
+        // 更新烟花位置和状态
+        update() {
+            if (!this.exploded) {
+                this.x += Math.cos(this.angle) * this.speed;
+                this.y += Math.sin(this.angle) * this.speed;
+                if (this.y <= this.targetY) {
+                    this.explode();
+                }
+            }
+            for (let i = this.particles.length - 1; i >= 0; i--) {
+                this.particles[i].update();
+                if (this.particles[i].isDead()) {
+                    this.particles.splice(i, 1);
+                }
+            }
+        }
+        // 烟花爆炸，创建粒子
+        explode() {
+            this.exploded = true;
+            const particleCount = 200;
+            for (let i = 0; i < particleCount; i++) {
+                const angle = Math.random() * 2 * Math.PI;
+                const speed = Math.random() * 4 + 1;
+                this.particles.push(new Particle(this.x, this.y, this.color, angle, speed));
+            }
+        }
+        // 绘制烟花
+        draw(ctx) {
+            if (!this.exploded) {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            for (let i = 0; i < this.particles.length; i++) {
+                if (!this.particles[i].isDead()) {
+                    this.particles[i].draw(ctx);
+                }
+            }
+        }
+    }
+
+    // 烟花粒子类
+    class Particle {
+        constructor(x, y, color, angle, speed) {
+            this.x = x;
+            this.y = y;
+            this.color = color;
+            this.alpha = 1;
+            this.decay = Math.random() * 0.015 + 0.005;
+            this.size = Math.random() * 3 + 1;
+            this.life = 100;
+            this.ax = (Math.random() - 0.5) * 0.1;
+            this.ay = 0.05;
+            this.vx = Math.cos(angle) * speed;
+            this.vy = Math.sin(angle) * speed;
+        }
+        // 更新粒子位置和属性
+        update() {
+            this.vx += this.ax;
+            this.vy += this.ay;
+            this.x += this.vx;
+            this.y += this.vy;
+            this.alpha -= this.decay;
+            this.life--;
+        }
+        // 绘制粒子
+        draw(ctx) {
+            ctx.save();
+            ctx.fillStyle = this.color;
+            ctx.globalAlpha = this.alpha;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        }
+        // 判断粒子是否已死亡
+        isDead() {
+            return this.alpha <= 0 || this.life <= 0;
+        }
+    }
+
+    // 雪花类
+    class Snowflake {
+        constructor() {
+            this.x = Math.random() * mainCanvas.width;
+            this.y = Math.random() * mainCanvas.height;
+            this.speed = Math.random() * 1 + 0.5;
+            this.size = Math.random() * 3 + 1;
+            this.opacity = Math.random() * 0.5 + 0.5;
+            this.wind = Math.random() * 0.5 - 0.25;
+            this.rotation = Math.random() * 360;
+            this.rotationSpeed = Math.random() * 1 - 0.5;
+        }
+        // 更新雪花位置和旋转
+        update() {
+            this.y += this.speed;
+            this.x += this.wind;
+            this.rotation += this.rotationSpeed;
+            if (this.y > mainCanvas.height) {
+                this.y = -this.size;
+                this.x = Math.random() * mainCanvas.width;
+            }
+            if (this.x > mainCanvas.width || this.x < 0) {
+                this.x = Math.random() * mainCanvas.width;
+            }
+        }
+        // 绘制雪花
+        draw(ctx) {
+            ctx.save();
+            ctx.globalAlpha = this.opacity;
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.rotation * Math.PI / 180);
+            ctx.fillStyle = `rgba(255, 255, 250, ${this.opacity})`;
+            ctx.beginPath();
+            ctx.arc(0, 0, this.size, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+    }
+}
+
+// 创建对象的辅助函数
+function createObjects(objects, interval, lastTime, objectClass, canvas) {
+    const currentTime = Date.now();
+    if (currentTime - lastTime > interval) {
+        objects.push(new objectClass());
+        return Date.now();
+    }
+    return lastTime;
+}
+
+// 动画循环函数
+function animate() {
+    permanentFireworkCtx.clearRect(0, 0, permanentFireworkCanvas.width, permanentFireworkCanvas.height);
+    bgCtx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+    bgCtx.fillRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
+    lastFireworkTime = createObjects(fireworks, fireworkInterval, lastFireworkTime, Firework, backgroundCanvas);
+    for (let i = fireworks.length - 1; i >= 0; i--) {
+        fireworks[i].update();
+        if (fireworks[i].exploded && fireworks[i].particles.length === 0) {
+            fireworks.splice(i, 1);
+        } else {
+            fireworks[i].draw(bgCtx);
+        }
+    }
+    mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+    lastSnowflakeTime = createObjects(snowflakes, snowflakeInterval, lastSnowflakeTime, Snowflake, mainCanvas);
+    for (let i = snowflakes.length - 1; i >= 0; i--) {
+        snowflakes[i].update();
+        snowflakes[i].draw(mainCtx);
+    }
+    requestAnimationFrame(animate);
+}
+
+// 显示开始按钮
+function showStartButton() {
+    beNiceButton.classList.add('hidden');
+    startButton.classList.remove('hidden');
+    niceMessage.classList.remove('hidden');
+    setTimeout(() => {
+        niceMessage.classList.add('hidden');
+    }, 1000);
+}
+
+// 开始2025年的操作
+function start2025() {
+    blessingsDiv.innerHTML = `2025年蛇年快乐<br><br>${blessing.replace(/\n/g, '<br>')}`;
+    blessingsDiv.classList.remove('hidden');
+    startButton.classList.add('hidden');
+    startMessage.classList.remove('hidden');
+    backgroundCanvas.classList.remove('hidden');
+    mainCanvas.classList.remove('hidden');
+    permanentFireworkCanvas.classList.remove('hidden');
+    fireworkSound.classList.remove('hidden');
+    resizeCanvas(backgroundCanvas, mainCanvas, permanentFireworkCanvas);
+    animate();
+    setTimeout(() => {
+        startMessage.classList.add('hidden');
+    }, 3000);
+    floatingMessage.classList.remove('hidden');
+    setTimeout(() => {
+        floatingMessage.classList.add('hidden');
+    }, 8000);
+}
+
+// 兼容性处理requestAnimationFrame
+(function () {
+    var lastTime = 0;
+    var vendors = ['webkit','moz','ms', 'o'];
+    for (var x = 0; x < vendors.length &&!window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+        window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
+    }
+    if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = function (callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+            var id = window.setTimeout(function () { callback(currTime + timeToCall); }, timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+        };
+    }
+    if (!window.cancelAnimationFrame) {
+        window.cancelAnimationFrame = function (id) {
+            clearTimeout(id);
+        };
+    }
+})();
+
+// 播放音乐
+function playMusic() {
+    if (fireworkSound.readyState === 4) {
+        fireworkSound.play();
+    } else {
+        fireworkSound.addEventListener('canplaythrough', function () {
+            fireworkSound.play();
+        });
+    }
+}
+
+// 暂停音乐
+function pauseMusic() {
+    fireworkSound.pause();
+}
+
+// 页面加载时调整画布尺寸
+window.addEventListener('load', () => {
+    resizeCanvas(backgroundCanvas, mainCanvas, permanentFireworkCanvas);
+});
+</script>
+</body>
+</html>
