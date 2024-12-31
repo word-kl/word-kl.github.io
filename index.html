@@ -1,77 +1,77 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<！doctype html>
+<超文本标记语言朗="zh-CN">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>烟花与雪花及祝福语</title>
-    <style>
-        /* 重置默认样式，使用 border-box 盒模型 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<头>
+    <元字符集="UTF-8">
+    <元姓名="视口" 内容="宽度=设备宽度，初始比例=1.0">
+    <标题>烟花与雪花及祝福语</标题>
+    <风格>
+        /*重置默认样式，使用边框框盒模型*/
+*{
+            边缘:0;
+            填充:0;
+            箱体尺寸:边框框;
         }
 
         /* 页面主体样式，居中并隐藏溢出内容 */
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            background-color: #000;
+身体{
+            显示:弯曲;
+            justify-content:中心;
+            对齐项目:中心;
+            高度:100VH;
+            溢出:隐藏的;
+            背景色: #000;
         }
 
         /* 画布样式，覆盖整个页面 */
-        canvas {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
+帆布{
+            位置:绝对的;
+            宽度:100%;
+            高度:100%;
+            指针事件:没有一个;
         }
 
-        /* 控制面板样式，使用 flex 布局，添加动画和阴影效果 */
-        #controlPanel {
-            position: relative;
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 30px;
-            border: 2px solid rgba(255, 77, 77, 0.5);
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(255, 77, 77, 0.3);
-            max-width: 80%;
-            width: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.3s ease;
+        /*控制面板样式，使用flex布局，添加动画和阴影效果*/
+#controlPanel{
+            位置:相对的;
+            Z指数:1000;
+            背景:RGBA(0,0,0,0.8);
+            填充:30PX;
+            边境:2PX 固体 RGBA(255,77,77,0.5);
+            边界半径:15PX;
+            箱形阴影:0 0 20PX RGBA(255,77,77,0.3);
+            最大宽度:80%;
+            宽度:300PX;
+            显示:弯曲;
+            挠曲方向:柱;
+            justify-content:中心;
+            对齐项目:中心;
+            过渡:所有 0.3s 缓解;
         }
 
-        /* 按钮容器样式，使用 flex 布局，添加间距 */
-        #controlPanel.button-container {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-            flex-wrap: wrap;
-            margin-top: 20px;
+        /*按钮容器样式，使用flex布局，添加间距*/
+#controlPanel.button-container{
+            显示:弯曲;
+            justify-content:环绕空间的;
+            宽度:100%;
+            柔性缠绕:包;
+            上边距:20PX;
         }
 
         /* 按钮通用样式，使用渐变背景，添加动画和阴影效果 */
-        #controlPanel button {
-            width: auto;
-            margin: 10px;
-            padding: 12px 24px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 20px;
-            font-weight: bold;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            background: linear-gradient(to bottom, #ffc0cb, #e65c00);
-            color: white;
+#controlPanel按钮{
+            宽度:自动;
+            边缘:10PX;
+            填充:12PX 24PX;
+            边界半径:8PX;
+            光标:指针;
+            字体大小:20PX;
+            字体粗细:大胆的;
+            文本阴影:1PX 1PX 3PX RGBA(0,0,0,0.5);
+            箱形阴影:0 4PX 6PX RGBA(0,0,0,0.3);
+            过渡:所有 0.3s 缓解;
+            背景:线性梯度(到 底部，#ffc0cb，#e65c00);
+            颜色:白色的;
             border: none;
         }
 
