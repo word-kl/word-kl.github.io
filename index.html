@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>南宁市殡仪馆夜班工作人员招聘</title>
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --secondary-color: #d32f2f;
+            --light-bg: #f5f7fa;
+            --dark-text: #333;
+            --light-text: #666;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, var(--light-bg) 0%, #e8e8e8 100%);
+            color: var(--dark-text);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 800px;
+            width: 90%;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+            margin: 20px 0;
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 2em;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        /* 头像图片样式 */
+        .avatar-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 15px auto;
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .job-highlights {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+        }
+        
+        .highlight-item {
+            margin: 10px;
+            min-width: 120px;
+        }
+        
+        .highlight-item strong {
+            display: block;
+            color: var(--primary-color);
+            font-size: 1.2em;
+        }
+        
+        .job-section {
+            text-align: left;
+            margin: 25px 0;
+        }
+        
+        .job-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.4em;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 10px;
+        }
+        
+        .job-section ul {
+            padding-left: 20px;
+        }
+        
+        .job-section li {
+            margin-bottom: 8px;
+        }
+        
+        .recruiter-info {
+            background-color: #f0f9f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .recruiter-name {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.2em;
+        }
+        
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .phone-btn {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .phone-btn:hover {
+            background-color: #1b5e20;
+        }
+        
+        .application-form {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            text-align: left;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            background-color: #1b5e20;
+            transform: translateY(-2px);
+        }
+        
+        .trust-badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .badge {
+            background-color: #e8f5e9;
+            color: var(--primary-color);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+        }
+        
+        .badge i {
+            margin-right: 5px;
+        }
+        
+        .disclaimer {
+            font-size: 0.8em;
+            color: var(--light-text);
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        footer {
+            text-align: center;
+            color: var(--light-text);
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .job-highlights {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .highlight-item {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>南宁市殡仪馆夜班工作人员招聘</h1>
+        
+        <!-- 您的头像图片 -->
+        <img src="头像.jpg" alt="招聘负责人头像" class="avatar-img">
+        
+        <!-- 招聘人信息 -->
+        <div class="recruiter-info">
+            <div class="recruiter-name">招聘人：好大一棵树</div>
+            <div>直接主管，负责面试和工作安排</div>
+        </div>
+        
+        <!-- 关键信息摘要 -->
+        <div class="job-highlights">
+            <div class="highlight-item">
+                <strong>薪资待遇</strong>
+                <span>600元/班</span>
+            </div>
+            <div class="highlight-item">
+                <strong>工作时间</strong>
+                <span>21:00-7:00</span>
+            </div>
+            <div class="highlight-item">
+                <strong>工作地点</strong>
+                <span>南宁市殡仪馆</span>
+            </div>
+            <div class="highlight-item">
+                <strong>招聘人数</strong>
+                <span>28人</span>
+            </div>
+        </div>
+        
+        <!-- 岗位详情 -->
+        <div class="job-section">
+            <h2><i class="fas fa-briefcase"></i> 岗位职责</h2>
+            <ul>
+                <li>负责夜间遗体接收、登记和安置工作</li>
+                <li>维护灵堂区域秩序和环境整洁</li>
+                <li>执行夜间安全巡查工作</li>
+                <li>协助处理突发事件</li>
+                <li>完成领导交办的其他工作</li>
+            </ul>
+        </div>
+        
+        <div class="job-section">
+            <h2><i class="fas fa-user-check"></i> 任职要求</h2>
+            <ul>
+                <li>男性，年龄18-45周岁</li>
+                <li>身体健康，无传染性疾病</li>
+                <li>胆大心细，心理素质良好</li>
+                <li>能适应夜间工作，吃苦耐劳</li>
+                <li>有相关工作经验者优先</li>
+            </ul>
+        </div>
+        
+        <div class="job-section">
+            <h2><i class="fas fa-gift"></i> 福利待遇</h2>
+            <ul>
+                <li>薪资：600元/班（下班即时结算）</li>
+                <li>提供夜间工作餐</li>
+                <li>表现优异者可转为长期员工</li>
+                <li>提供必要的工作防护用品</li>
+                <li>工作满一个月有额外奖金</li>
+            </ul>
+        </div>
+        
+        <!-- 联系方式 -->
+        <div class="contact-methods">
+            <a href="tel:15355784997" class="contact-btn phone-btn">
+                <i class="fas fa-phone-alt" style="margin-right: 8px;"></i> 点击拨打：153 5578 4997
+            </a>
+        </div>
+        
+        <!-- 信任标识 -->
+        <div class="trust-badges">
+            <div class="badge"><i class="fas fa-check-circle"></i> 营业执照已验证</div>
+            <div class="badge"><i class="fas fa-shield-alt"></i> 平台担保</div>
+            <div class="badge"><i class="fas fa-clock"></i> 今日更新</div>
+        </div>
+        
+        <!-- 在线申请表单 -->
+        <div class="application-form">
+            <h2><i class="fas fa-edit"></i> 在线申请</h2>
+            <form id="jobApplication">
+                <div class="form-group">
+                    <label for="name">姓名</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">手机号码</label>
+                    <input type="tel" id="phone" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="experience">相关工作经验</label>
+                    <textarea id="experience" class="form-control"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="availability">可上岗时间</label>
+                    <input type="text" id="availability" class="form-control" placeholder="例如：随时/下周一起">
+                </div>
+                
+                <button type="submit" class="submit-btn">提交申请</button>
+            </form>
+        </div>
+        
+        <!-- 免责声明 -->
+        <div class="disclaimer">
+            <p><strong>温馨提示：</strong>本公司招聘不收取任何费用，请警惕虚假招聘信息。如有任何人以各种理由收取费用，请立即拒绝并联系我们。</p>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 南宁市殡仪馆招聘信息 - 保留所有权利</p>
+    </footer>
+
+    <script>
+        // 表单提交处理
+        document.getElementById('jobApplication').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 获取表单数据
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            
+            // 这里可以添加表单验证
+            
+            // 模拟提交成功
+            alert(`感谢 ${name} 提交申请！我们会在24小时内回复
