@@ -3,389 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>南宁市殡仪馆夜班工作人员招聘</title>
+    <title>进阶夸夸生成器</title>
     <style>
-        :root {
-            --primary-color: #2e7d32;
-            --secondary-color: #d32f2f;
-            --light-bg: #f5f7fa;
-            --dark-text: #333;
-            --light-text: #666;
-        }
-        
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
         }
-        
         body {
-            font-family: 'Microsoft YaHei', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
             min-height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, var(--light-bg) 0%, #e8e8e8 100%);
-            color: var(--dark-text);
             padding: 20px;
-            line-height: 1.6;
-        }
-        
-        .container {
-            text-align: center;
-            max-width: 800px;
-            width: 90%;
-            background-color: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 1s ease-in-out;
-            margin: 20px 0;
-        }
-        
-        h1 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            font-size: 2em;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-        
-        /* 头像图片样式 */
-        .avatar-img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin: 15px auto;
-            border: 4px solid var(--primary-color);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .job-highlights {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin: 20px 0;
-            padding: 15px;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-        }
-        
-        .highlight-item {
-            margin: 10px;
-            min-width: 120px;
-        }
-        
-        .highlight-item strong {
-            display: block;
-            color: var(--primary-color);
-            font-size: 1.2em;
-        }
-        
-        .job-section {
-            text-align: left;
-            margin: 25px 0;
-        }
-        
-        .job-section h2 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            font-size: 1.4em;
-            border-left: 4px solid var(--primary-color);
-            padding-left: 10px;
-        }
-        
-        .job-section ul {
-            padding-left: 20px;
-        }
-        
-        .job-section li {
-            margin-bottom: 8px;
-        }
-        
-        .recruiter-info {
-            background-color: #f0f9f0;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border-left: 4px solid var(--primary-color);
-        }
-        
-        .recruiter-name {
-            font-weight: bold;
-            color: var(--primary-color);
-            font-size: 1.2em;
-        }
-        
-        .contact-methods {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin: 25px 0;
-        }
-        
-        .contact-btn {
-            display: flex;
             align-items: center;
             justify-content: center;
-            padding: 12px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(252, 182, 159, 0.3);
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+        }
+        h1 {
+            color: #ff6b6b;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        .style-select {
+            margin: 15px 0;
+        }
+        .style-select select {
+            padding: 8px 12px;
+            border: 2px solid #ffd166;
             border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s;
+            font-size: 14px;
+            cursor: pointer;
         }
-        
-        .phone-btn {
-            background-color: var(--primary-color);
-            color: white;
+        .input-area {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
         }
-        
-        .phone-btn:hover {
-            background-color: #1b5e20;
-        }
-        
-        .application-form {
-            background-color: #f9f9f9;
-            padding: 20px;
+        #name-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 3px solid #ffd166;
             border-radius: 10px;
-            margin: 25px 0;
-            text-align: left;
+            font-size: 16px;
+            outline: none;
         }
-        
-        .form-group {
-            margin-bottom: 15px;
+        #name-input:focus {
+            border-color: #06d6a0;
         }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+        .btn-group {
+            display: flex;
+            gap: 10px;
         }
-        
-        .form-control {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: inherit;
-        }
-        
-        textarea.form-control {
-            min-height: 100px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            background-color: var(--primary-color);
-            color: white;
+        button {
+            padding: 12px 20px;
             border: none;
-            padding: 12px 25px;
-            font-size: 1em;
-            border-radius: 5px;
+            border-radius: 10px;
+            font-size: 16px;
             cursor: pointer;
             transition: all 0.3s;
-            font-weight: bold;
-            width: 100%;
         }
-        
-        .submit-btn:hover {
-            background-color: #1b5e20;
-            transform: translateY(-2px);
+        #generate-btn {
+            background: #06d6a0;
+            color: white;
         }
-        
-        .trust-badges {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
+        #generate-btn:hover {
+            background: #05b88d;
+            transform: scale(1.05);
+        }
+        #copy-btn {
+            background: #118ab2;
+            color: white;
+        }
+        #copy-btn:hover {
+            background: #0d7090;
+        }
+        #result {
+            min-height: 80px;
             margin: 20px 0;
-        }
-        
-        .badge {
-            background-color: #e8f5e9;
-            color: var(--primary-color);
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.9em;
+            padding: 15px;
+            border-radius: 10px;
+            background: #f7f9fc;
+            font-size: 18px;
+            color: #2a9d8f;
             display: flex;
             align-items: center;
+            justify-content: center;
+            transition: all 0.5s;
         }
-        
-        .badge i {
-            margin-right: 5px;
+        .highlight {
+            color: #e76f51;
+            font-weight: bold;
         }
-        
-        .disclaimer {
-            font-size: 0.8em;
-            color: var(--light-text);
-            margin-top: 30px;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
-        }
-        
-        footer {
-            text-align: center;
-            color: var(--light-text);
-            font-size: 0.9em;
+        .history {
             margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px dashed #ffd166;
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .history h3 {
+            color: #ff6b6b;
+            font-size: 16px;
+            margin-bottom: 10px;
         }
-        
-        /* 响应式设计 */
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
-            }
-            
-            .job-highlights {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .highlight-item {
-                width: 100%;
-                margin: 5px 0;
-            }
+        .history-list {
+            max-height: 100px;
+            overflow-y: auto;
+            font-size: 14px;
+            color: #666;
+        }
+        .history-item {
+            margin: 5px 0;
+            cursor: pointer;
+        }
+        .history-item:hover {
+            color: #e76f51;
+        }
+        .copy-tip {
+            color: #06d6a0;
+            margin-top: 10px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <h1>南宁市殡仪馆夜班工作人员招聘</h1>
-        
-        <!-- 您的头像图片 -->
-        <img src="头像.jpg" alt="招聘负责人头像" class="avatar-img">
-        
-        <!-- 招聘人信息 -->
-        <div class="recruiter-info">
-            <div class="recruiter-name">招聘人：好大一棵树</div>
-            <div>直接主管，负责面试和工作安排</div>
+        <h1>✨ 夸夸生成器 ✨</h1>
+        <p>输入名字，选个风格，让我来夸夸TA！</p >
+
+        <!-- 风格选择 -->
+        <div class="style-select">
+            <select id="style-select">
+                <option value="cute">可爱风</option>
+                <option value="rainbow">彩虹屁风</option>
+                <option value="silly">沙雕风</option>
+            </select>
         </div>
-        
-        <!-- 关键信息摘要 -->
-        <div class="job-highlights">
-            <div class="highlight-item">
-                <strong>薪资待遇</strong>
-                <span>600元/班</span>
-            </div>
-            <div class="highlight-item">
-                <strong>工作时间</strong>
-                <span>21:00-7:00</span>
-            </div>
-            <div class="highlight-item">
-                <strong>工作地点</strong>
-                <span>南宁市殡仪馆</span>
-            </div>
-            <div class="highlight-item">
-                <strong>招聘人数</strong>
-                <span>28人</span>
+
+        <div class="input-area">
+            <input type="text" id="name-input" placeholder="比如：小明">
+            <div class="btn-group">
+                <button id="generate-btn">开始夸！</button>
+                <button id="copy-btn">复制</button>
             </div>
         </div>
-        
-        <!-- 岗位详情 -->
-        <div class="job-section">
-            <h2><i class="fas fa-briefcase"></i> 岗位职责</h2>
-            <ul>
-                <li>负责夜间遗体接收、登记和安置工作</li>
-                <li>维护灵堂区域秩序和环境整洁</li>
-                <li>执行夜间安全巡查工作</li>
-                <li>协助处理突发事件</li>
-                <li>完成领导交办的其他工作</li>
-            </ul>
+
+        <div id="result">
+            等待夸奖生成中...
         </div>
-        
-        <div class="job-section">
-            <h2><i class="fas fa-user-check"></i> 任职要求</h2>
-            <ul>
-                <li>男性，年龄18-45周岁</li>
-                <li>身体健康，无传染性疾病</li>
-                <li>胆大心细，心理素质良好</li>
-                <li>能适应夜间工作，吃苦耐劳</li>
-                <li>有相关工作经验者优先</li>
-            </ul>
-        </div>
-        
-        <div class="job-section">
-            <h2><i class="fas fa-gift"></i> 福利待遇</h2>
-            <ul>
-                <li>薪资：600元/班（下班即时结算）</li>
-                <li>提供夜间工作餐</li>
-                <li>表现优异者可转为长期员工</li>
-                <li>提供必要的工作防护用品</li>
-                <li>工作满一个月有额外奖金</li>
-            </ul>
-        </div>
-        
-        <!-- 联系方式 -->
-        <div class="contact-methods">
-            <a href="tel:15355784997" class="contact-btn phone-btn">
-                <i class="fas fa-phone-alt" style="margin-right: 8px;"></i> 点击拨打：153 5578 4997
-            </a>
-        </div>
-        
-        <!-- 信任标识 -->
-        <div class="trust-badges">
-            <div class="badge"><i class="fas fa-check-circle"></i> 营业执照已验证</div>
-            <div class="badge"><i class="fas fa-shield-alt"></i> 平台担保</div>
-            <div class="badge"><i class="fas fa-clock"></i> 今日更新</div>
-        </div>
-        
-        <!-- 在线申请表单 -->
-        <div class="application-form">
-            <h2><i class="fas fa-edit"></i> 在线申请</h2>
-            <form id="jobApplication">
-                <div class="form-group">
-                    <label for="name">姓名</label>
-                    <input type="text" id="name" class="form-control" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone">手机号码</label>
-                    <input type="tel" id="phone" class="form-control" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="experience">相关工作经验</label>
-                    <textarea id="experience" class="form-control"></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="availability">可上岗时间</label>
-                    <input type="text" id="availability" class="form-control" placeholder="例如：随时/下周一起">
-                </div>
-                
-                <button type="submit" class="submit-btn">提交申请</button>
-            </form>
-        </div>
-        
-        <!-- 免责声明 -->
-        <div class="disclaimer">
-            <p><strong>温馨提示：</strong>本公司招聘不收取任何费用，请警惕虚假招聘信息。如有任何人以各种理由收取费用，请立即拒绝并联系我们。</p>
+        <div class="copy-tip" id="copy-tip">复制成功！快去发给TA～</div>
+
+        <!-- 历史记录 -->
+        <div class="history">
+            <h3>最近夸过这些 ↓</h3>
+            <div class="history-list" id="history-list"></div>
         </div>
     </div>
-    
-    <footer>
-        <p>&copy; 2023 南宁市殡仪馆招聘信息 - 保留所有权利</p>
-    </footer>
 
     <script>
-        // 表单提交处理
-        document.getElementById('jobApplication').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // 获取表单数据
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            
-            // 这里可以添加表单验证
-            
-            // 模拟提交成功
-            alert(`感谢 ${name} 提交申请！我们会在24小时内回复
+        // 分风格的夸夸库
+        const praiseDB = {
+            cute: [
+                "{name}笑起来的时候，眼睛像装了小星星～",
+                "{name}连发呆都软软糯糯的，好想rua一下！",
+                "{name}说话的语气像棉花糖，甜到心里啦"
+            ],
+            rainbow: [
+                "{name}的存在就是对世界的温柔馈赠吧！",
+                "如果满分是10分，{name}一定是100分——多出来的90分是惊喜！",
+                "{name}连呼吸都自带优雅buff，这是什么神仙配置"
+            ],
+            silly: [
+                "{name}是不是偷偷吃了快乐糖？跟TA在一起永远不无聊！",
+                "建议{name}出道卖可爱，我第一个买门票！",
+                "{name}的脑洞能装下三个宇宙吧？太有意思了哈哈"
+            ]
+        };
+
+        // 历史记录数组
+        let history = [];
+
+        // 获取元素
+        const nameInput = document.getElementById('name-input');
+        const generateBtn = document.getElementById('generate-btn');
+        const copyBtn = document.getElementById('copy-btn');
+        const result = document.getElementById('result');
+        const copyTip = document.getElementById('copy-tip');
+        const styleSelect = document.getElementById('style-select');
+        const historyList = document.getElementById('history-list');
+
+        // 生成夸夸
+        function generatePraise() {
+            const name = nameInput.value.trim();
+            if (!name) {
+                result.innerHTML = "先输入名字嘛～不然我夸谁呀？";
+                return;
+            }
+
+            // 选风格
+            const style = styleSelect.value;
+            const praiseList = praiseDB[style];
+            // 随机选一条
+            const randomPraise = praiseList[Math.floor(Math.random() * praiseList.length)];
+            const praiseText = randomPraise.replace("{name}", `<span class="highlight">${name}</span>`);
+
+            // 动画效果
+            result.style.opacity = "0";
+            setTimeout(() => {
+                result.innerHTML = praiseText;
+                result.style.opacity = "1";
+                // 存历史记录
+                saveHistory(praiseText.replace(/<[^>]+>/g, '')); // 去掉HTML标签
+            }, 300);
+        }
+
+        // 保存历史记录
+        function saveHistory(text) {
+            history.unshift(text); // 加在最前面
+            if (history.length > 5) history.pop(); // 只存5条
+            renderHistory();
+        }
+
+        // 渲染历史记录
+        function renderHistory() {
+            historyList.innerHTML = history.map((item, index) => 
+                `<div class="history-item" data-index="${index}">${index+1}. ${item}</div>`
+            ).join('');
+
+            // 点击历史记录重新显示
+            document.querySelectorAll('.history-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const text = history[item.dataset.index];
+                    result.innerHTML = text.replace(/(\S+)/, '<span class="highlight">$1</span>');
+                });
+            });
+        }
+
+        // 复制内容
+        function copyResult() {
+            const text = result.innerText;
+            if (text === "等待夸奖生成中..." || text === "先输入名字嘛～不然我夸谁呀？") {
+                copyTip.textContent = "先生成夸夸再复制哦～";
+                copyTip.style.color = "#ff6b6b";
+                copyTip.style.opacity = "1";
+                setTimeout(() => copyTip.style.opacity = "0", 2000);
+                return;
+            }
+
+            navigator.clipboard.writeText(text).then(() => {
+                copyTip.textContent = "复制成功！快去发给TA～";
+                copyTip.style.color = "#06d6a0";
+                copyTip.style.opacity = "1";
+                setTimeout(() => copyTip.style.opacity = "0", 2000);
+            });
+        }
+
+        // 绑定事件
+        generateBtn.addEventListener('click', generatePraise);
+        copyBtn.addEventListener('click', copyResult);
+        nameInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') generatePraise();
+        });
+    </script>
+</body>
+</html>
